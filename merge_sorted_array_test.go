@@ -1,6 +1,7 @@
 package leetgo
 
 import (
+	"sort"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -44,28 +45,16 @@ func TestMerge(t *testing.T) {
 }
 
 func Merge(nums1 []int, m int, nums2 []int, n int) []int {
-	index := m + n - 1
-
-	i := m - 1
-	j := n - 1
-
-	for i >= 0 && j >= 0 {
-		if nums1[i] >= nums2[j] {
-			nums1[index] = nums1[i]
-			index--
-			i--
-		} else {
-			nums1[index] = nums2[j]
-			index--
-			j--
-		}
+	if len(nums1) > m {
+		nums1 = nums1[:m]
 	}
 
-	for j >= 0 {
-		nums1[index] = nums2[j]
-		index--
-		j--
+	if len(nums2) > n {
+		nums2 = nums2[:n]
 	}
 
+	nums1 = append(nums1, nums2...)
+
+	sort.Ints(nums1)
 	return nums1
 }
