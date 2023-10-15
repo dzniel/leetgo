@@ -38,9 +38,9 @@ func TestMerge(t *testing.T) {
 		},
 	}
 
-	for index, testCase := range testCases {
+	for _, testCase := range testCases {
 		result := Merge(testCase.nums1, testCase.m, testCase.nums2, testCase.n)
-		require.Equal(t, testCase.expected, result, index+1)
+		require.Equal(t, testCase.expected, result)
 	}
 }
 
